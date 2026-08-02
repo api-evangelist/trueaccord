@@ -1,0 +1,357 @@
+openapi: 3.0.3
+info:
+  title: TrueAccord Recover API
+  version: v1
+  description: >-
+    The TrueAccord Recover API lets creditors and debt buyers place accounts
+    with TrueAccord for digital-first, omnichannel debt collection. It manages
+    customers (consumers), their contact information, and the debts placed for
+    recovery. Authentication is HTTP Basic with a TrueAccord API key supplied as
+    the username. This specification was reconstructed by API Evangelist from the
+    public TrueAccord developer documentation at https://docs.trueaccord.com/ and
+    is not an official TrueAccord artifact.
+  contact:
+    name: TrueAccord Developer Documentation
+    url: https://docs.trueaccord.com/
+  x-apievangelist:
+    method: searched
+    source: https://docs.trueaccord.com/recover/recover-api-reference
+    generated: '2026-07-21'
+servers:
+  - url: https://api.trueaccord.com/api/v1
+    description: Production
+security:
+  - basicAuth: []
+tags:
+  - name: Customers
+    description: Create, retrieve, and manage customers (consumers) and their debts.
+paths:
+  /customers/:
+    post:
+      operationId: addCustomers
+      tags: [Customers]
+      summary: Add customers (V1)
+      description: >-
+        Create one or more customers with their addresses, phones, emails, and
+        debts. Set addDebtsIfPossible to add debts to customers that already
+        exist rather than failing on a duplicate reference.
+      parameters:
+        - name: addDebtsIfPossible
+          in: query
+          required: false
+          schema: { type: boolean }
+          description: When true, add debts to existing customers instead of rejecting duplicates.
+        - $ref: '#/components/parameters/CreditorHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customers:
+                  type: array
+                  items: { $ref: '#/components/schemas/Customer' }
+      responses:
+        '200':
+          description: Customers created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items: { $ref: '#/components/schemas/Customer' }
+                  duplicatedReferences:
+                    type: array
+                    items: { type: object }
+                  customersWithAddedDebts:
+                    type: array
+                    items: { type: object }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+    get:
+      operationId: listCustomers
+      tags: [Customers]
+      summary: List customers
+      description: >-
+        List customers with pagination. Filter by a comma-separated set of
+        creditor references, or by a created/updated time window. Maximum 100
+        results per request.
+      parameters:
+        - name: count
+          in: query
+          schema: { type: integer, maximum: 100 }
+          description: Number of results to return (max 100).
+        - name: offset
+          in: query
+          schema: { type: integer }
+          description: Pagination offset.
+        - name: startTime
+          in: query
+          schema: { type: integer, format: int64 }
+          description: Lower bound timestamp (milliseconds since epoch, UTC).
+        - name: endTime
+          in: query
+          schema: { type: integer, format: int64 }
+          description: Upper bound timestamp (milliseconds since epoch, UTC).
+        - name: reference
+          in: query
+          schema: { type: string }
+          description: Comma-separated creditor references (max 100).
+        - $ref: '#/components/parameters/CreditorHeader'
+      responses:
+        '200':
+          description: A page of customers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items: { $ref: '#/components/schemas/Customer' }
+                  totalResults: { type: integer }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /customersBatch/:
+    post:
+      operationId: addCustomersBatch
+      tags: [Customers]
+      summary: Add customers (V2, batch)
+      description: >-
+        Batch variant of addCustomers that returns an individual response or
+        error object per submitted customer, so a single bad record does not
+        fail the whole batch.
+      parameters:
+        - name: addDebtsIfPossible
+          in: query
+          required: false
+          schema: { type: boolean }
+        - $ref: '#/components/parameters/CreditorHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customers:
+                  type: array
+                  items: { $ref: '#/components/schemas/Customer' }
+      responses:
+        '200':
+          description: Per-customer results.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        customer: { $ref: '#/components/schemas/Customer' }
+                        isAddedDebt: { type: boolean }
+                        isError: { type: boolean }
+                        error: { $ref: '#/components/schemas/Error' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /customers/{customerId}:
+    parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema: { type: string }
+      - $ref: '#/components/parameters/CreditorHeader'
+    get:
+      operationId: getCustomer
+      tags: [Customers]
+      summary: Get one customer
+      description: Retrieve a single customer by its TrueAccord customer id.
+      responses:
+        '200':
+          description: The customer.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Customer' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    patch:
+      operationId: addContactInformation
+      tags: [Customers]
+      summary: Add contact information
+      description: >-
+        Append addresses, phones, and/or emails to a customer. Additions do not
+        replace existing contact information.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addresses:
+                  type: array
+                  items: { $ref: '#/components/schemas/Address' }
+                phones:
+                  type: array
+                  items: { $ref: '#/components/schemas/Phone' }
+                emails:
+                  type: array
+                  items: { $ref: '#/components/schemas/Email' }
+      responses:
+        '200':
+          description: Updated customer.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Customer' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      operationId: editContactInformation
+      tags: [Customers]
+      summary: Edit contact information
+      description: >-
+        Replace a customer's contact information. The payload is treated as the
+        source of truth. Name, at least one address, and at least one email are
+        required.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, addresses, emails]
+              properties:
+                name: { type: string }
+                dateOfBirth: { $ref: '#/components/schemas/DateObject' }
+                languagePreference: { type: string, enum: [EN, ES] }
+                languagePreferred:
+                  type: object
+                  properties:
+                    language: { type: string }
+                    channel: { type: string }
+                    date: { $ref: '#/components/schemas/DateObject' }
+                addresses:
+                  type: array
+                  minItems: 1
+                  items: { $ref: '#/components/schemas/Address' }
+                phones:
+                  type: array
+                  items: { $ref: '#/components/schemas/Phone' }
+                emails:
+                  type: array
+                  minItems: 1
+                  items: { $ref: '#/components/schemas/Email' }
+      responses:
+        '200':
+          description: Updated customer.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Customer' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication. Supply your TrueAccord API key as the
+        username; the password is ignored but a trailing colon is required
+        (e.g. curl -u $YOUR_KEY:).
+  parameters:
+    CreditorHeader:
+      name: X-TA-CREDITOR
+      in: header
+      required: false
+      schema: { type: string }
+      description: >-
+        Creditor id. Required for multi-creditor accounts; a 403 is returned
+        when it is required but missing.
+  responses:
+    BadRequest:
+      description: Invalid request data.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Forbidden:
+      description: Missing or invalid creditor header / not authorized.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NotFound:
+      description: Customer not found.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Conflict:
+      description: Duplicate transaction id.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+  schemas:
+    Error:
+      type: object
+      description: TrueAccord error envelope.
+      properties:
+        code: { type: string, description: Error code. }
+        msg: { type: string, description: Human-readable error message. }
+        errorInfo: { type: object, description: Additional error details. }
+    Money:
+      type: object
+      properties:
+        amount: { type: integer, description: Minor units. }
+        currency: { type: string, example: USD }
+    DateObject:
+      type: object
+      properties:
+        day: { type: integer }
+        month: { type: integer }
+        year: { type: integer }
+    Address:
+      type: object
+      properties:
+        line1: { type: string }
+        line2: { type: string }
+        city: { type: string }
+        state: { type: string }
+        zipCode: { type: string }
+        country: { type: string }
+    Phone:
+      type: object
+      properties:
+        number: { type: string }
+        type: { type: string }
+    Email:
+      type: object
+      properties:
+        address: { type: string, format: email }
+    Debt:
+      type: object
+      properties:
+        biller: { type: string }
+        product: { type: string }
+        principal: { $ref: '#/components/schemas/Money' }
+        interest: { $ref: '#/components/schemas/Money' }
+        fees: { $ref: '#/components/schemas/Money' }
+        transactionId: { type: string, description: Unique per debt; a duplicate yields 409. }
+        chargeOffDate: { $ref: '#/components/schemas/DateObject' }
+        paymentOffers: { type: array, items: { type: object } }
+    Customer:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        dateOfBirth: { $ref: '#/components/schemas/DateObject' }
+        reference: { type: string }
+        businesses: { type: array, items: { type: object } }
+        addresses: { type: array, items: { $ref: '#/components/schemas/Address' } }
+        phones: { type: array, items: { $ref: '#/components/schemas/Phone' } }
+        emails: { type: array, items: { $ref: '#/components/schemas/Email' } }
+        debts: { type: array, items: { $ref: '#/components/schemas/Debt' } }
+        metadata: { type: object }

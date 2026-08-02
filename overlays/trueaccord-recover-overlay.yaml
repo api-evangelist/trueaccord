@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for TrueAccord Recover API
+  version: 1.0.0
+extends: openapi/trueaccord-recover-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 3
+      x-apievangelist-notes: >-
+        Reconstructed from public TrueAccord developer documentation. HTTP Basic
+        auth (API key as username) plus X-TA-CREDITOR header; offset pagination
+        (max 100); per-debt transactionId idempotency; custom error envelope.
+  - target: $.info
+    update:
+      x-idempotency:
+        supported: true
+        key: transactionId
+        scope: debt placement
+  - target: $.tags
+    update:
+      - name: Customers
+        x-apievangelist-primary: true

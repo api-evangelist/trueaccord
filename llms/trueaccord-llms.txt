@@ -1,0 +1,21 @@
+# TrueAccord
+
+> TrueAccord is a digital-first, omnichannel debt collection agency that uses data science and machine learning to recover debt with a consumer-friendly experience. Its Recover API lets creditors and debt buyers place consumers and their debts for collection and manage customer records.
+
+## APIs
+- [Recover API reference](https://docs.trueaccord.com/recover/recover-api-reference): Customers and debts placement/management. HTTP Basic auth (API key as username), base URL https://api.trueaccord.com/api/v1/.
+- [Retain API spec](https://docs.trueaccord.com/retain/retain-api-spec): First-party retention/collection product API.
+
+## Specs
+- [Recover OpenAPI (API Evangelist reconstruction)](https://raw.githubusercontent.com/api-evangelist/trueaccord/refs/heads/main/openapi/trueaccord-recover-openapi.yml)
+
+## Docs
+- [Developer documentation home](https://docs.trueaccord.com/)
+- [Recover errors](https://docs.trueaccord.com/recover/errors)
+- [Blog](https://blog.trueaccord.com/)
+
+## Company
+- [Website](https://www.trueaccord.com)
+- [Terms of Service](https://www.trueaccord.com/terms-of-service)
+- [Privacy Policy](https://www.trueaccord.com/privacy-policy/)
+- [Careers](https://www.trueaccord.com/about-us/careers/)

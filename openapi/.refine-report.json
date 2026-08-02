@@ -1,0 +1,14 @@
+{
+  "provider": "trueaccord",
+  "sources": [
+    "trueaccord-customers-api-openapi.yml"
+  ],
+  "outputs": [
+    "trueaccord-customers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.trueaccord.com/recover/recover-api-reference
+api: openapi/trueaccord-recover-openapi.yml
+authentication:
+  style: http-basic
+  detail: API key as Basic username; X-TA-CREDITOR header for multi-creditor accounts.
+  ref: authentication/trueaccord-authentication.yml
+idempotency:
+  supported: true
+  mechanism: business-key
+  key_field: transactionId
+  scope: debt placement
+  detail: >-
+    Each debt carries a unique transactionId. Re-submitting a debt with a
+    transactionId that already exists returns 409 Conflict rather than
+    double-placing the debt, making customer/debt creation safe to retry.
+  header: null
+pagination:
+  style: offset
+  params: [count, offset]
+  max_page_size: 100
+  time_window_params: [startTime, endTime]
+  response_fields: [customers, totalResults]
+filtering:
+  by_reference: reference (comma-separated creditor references, max 100)
+data_types:
+  timestamp: Milliseconds since epoch (UTC); displayed in the customer's timezone.
+  money: '{ amount: integer (minor units), currency: "USD" }'
+  date: '{ day, month, year }'
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: >-
+    Base path /api/v1/. A V2 batch endpoint (/customersBatch/) coexists with
+    the V1 /customers/ endpoint rather than bumping the path version.
+  ref: lifecycle/trueaccord-lifecycle.yml
+error_envelope:
+  shape: '{ code, msg, errorInfo }'
+  format: custom
+  ref: errors/trueaccord-problem-types.yml
+transport:
+  https_required: true

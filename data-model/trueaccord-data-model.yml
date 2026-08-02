@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trueaccord-recover-openapi.yml
+entities:
+  - name: Customer
+    description: A consumer whose debt has been placed with TrueAccord for recovery.
+    key: id
+    external_key: reference
+  - name: Debt
+    description: An individual debt (account) placed against a customer.
+    key: transactionId
+  - name: Address
+  - name: Phone
+  - name: Email
+  - name: Money
+    description: Value object (amount minor units + currency).
+  - name: DateObject
+    description: Value object (day/month/year).
+relationships:
+  - from: Customer
+    to: Debt
+    type: has_many
+    via: debts
+  - from: Customer
+    to: Address
+    type: has_many
+    via: addresses
+  - from: Customer
+    to: Phone
+    type: has_many
+    via: phones
+  - from: Customer
+    to: Email
+    type: has_many
+    via: emails
+  - from: Debt
+    to: Money
+    type: has_many
+    via: [principal, interest, fees]

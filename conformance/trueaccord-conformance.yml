@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trueaccord-recover-openapi.yml
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: Auth is HTTP Basic (API key as username), no oauth2 securityScheme.
+  - id: oidc
+    conforms: false
+  - id: http-basic-auth
+    conforms: true
+    evidence: securityScheme type http scheme basic.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom { code, msg, errorInfo } envelope, not application/problem+json.
+  - id: pagination
+    conforms: true
+    evidence: Offset pagination via count/offset with totalResults.
+  - id: idempotency
+    conforms: true
+    evidence: Per-debt transactionId dedup returns 409 on replay.
+  - id: iso27001
+    conforms: true
+    evidence: TrueAccord states ISO 27001 certification on its security pages.

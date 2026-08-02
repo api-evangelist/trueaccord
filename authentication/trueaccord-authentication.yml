@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.trueaccord.com/recover/recover-api-reference
+docs: https://docs.trueaccord.com/recover/recover-api-reference
+summary:
+  types: [http]
+  http_schemes: [basic]
+  api_key_in: []
+  oauth2_flows: []
+  notes: >-
+    HTTP Basic authentication over HTTPS. The TrueAccord API key is supplied as
+    the username; the password field is ignored but a trailing colon is
+    required. Multi-creditor accounts must also send the X-TA-CREDITOR header
+    identifying the creditor, or the API returns 403.
+schemes:
+  - name: basicAuth
+    type: http
+    scheme: basic
+    description: >-
+      API key as HTTP Basic username (password ignored, trailing colon
+      required). Example: curl https://api.trueaccord.com/api/v1/customers/ -u $YOUR_KEY:
+    sources: [openapi/trueaccord-recover-openapi.yml]
+additional_headers:
+  - name: X-TA-CREDITOR
+    required_when: multi-creditor account
+    description: Creditor id; required for multi-creditor accounts, else 403.

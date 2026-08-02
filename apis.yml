@@ -1,8 +1,29 @@
 aid: trueaccord
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/trueaccord.png
 name: TrueAccord
-description: 'TrueAccord is a company surfaced as a portfolio company of homebrew and added to the API
-  Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  TrueAccord is a digital-first, omnichannel debt collection agency that uses
+  data science and machine learning to recover consumer debt with a
+  consumer-friendly, self-service experience. Through its Recover API, creditors
+  and debt buyers place consumers and their debts for collection and manage
+  customer records — customers, their contact information (addresses, phones,
+  emails), and the debts placed against them — over a simple HTTPS interface
+  secured with HTTP Basic authentication (API key as username) plus an
+  X-TA-CREDITOR header for multi-creditor accounts. TrueAccord also operates
+  first-party collections through its Sentry Credit subsidiary and its HeartBeat
+  and HumAIn platforms, and is ISO 27001 certified.
 url: https://raw.githubusercontent.com/api-evangelist/trueaccord/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,11 +33,28 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-- Unknown
-apis: []
+- Debt Collection
+- Financial Services
+- Fintech
+- Machine Learning
+- Collections
+- Consumer Finance
+apis:
+- aid: trueaccord:trueaccord-customers-api
+  name: TrueAccord Customers API
+  description: Create, retrieve, and manage customers (consumers) and their debts.
+  humanURL: https://docs.trueaccord.com/recover/recover-api-reference
+  baseURL: https://api.trueaccord.com/api/v1
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/trueaccord-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.trueaccord.com/recover/recover-api-reference
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +63,46 @@ maintainers:
 common:
 - type: Website
   url: https://www.trueaccord.com
+- type: DeveloperPortal
+  url: https://docs.trueaccord.com/
+- type: Documentation
+  url: https://docs.trueaccord.com/
+- type: APIReference
+  url: https://docs.trueaccord.com/recover/recover-api-reference
+- type: Blog
+  url: https://blog.trueaccord.com/
+- type: TermsOfService
+  url: https://www.trueaccord.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.trueaccord.com/privacy-policy/
+- type: Compliance
+  url: https://www.trueaccord.com/it-security
+- type: Authentication
+  url: authentication/trueaccord-authentication.yml
+- type: Conventions
+  url: conventions/trueaccord-conventions.yml
+- type: Idempotency
+  url: conventions/trueaccord-conventions.yml
+- type: ErrorCatalog
+  url: errors/trueaccord-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/trueaccord-lifecycle.yml
+- type: Conformance
+  url: conformance/trueaccord-conformance.yml
+- type: DataModel
+  url: data-model/trueaccord-data-model.yml
+- type: MCPServer
+  url: mcp/trueaccord-mcp.yml
+- type: LLMsTxt
+  url: llms/trueaccord-llms.txt
+- type: Overlay
+  url: overlays/trueaccord-recover-overlay.yaml
+- type: AgenticAccess
+  url: agentic-access/trueaccord-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1

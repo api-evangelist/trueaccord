@@ -1,0 +1,8 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/trueaccord-recover-openapi.yml
+skills:
+  - file: trueaccord-place-and-track-debt.md
+    name: Place a customer and debt, then track it
+    api: openapi/trueaccord-recover-openapi.yml
+    operations: [addCustomers, listCustomers, getCustomer, addContactInformation]

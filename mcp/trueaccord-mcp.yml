@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/trueaccord-recover-openapi.yml
+note: >-
+  No official TrueAccord MCP server was found. This is a candidate tool surface
+  derived from the Recover API operations, one tool per operationId.
+server:
+  name: trueaccord-recover
+  transport: http
+tools:
+  - name: add_customers
+    description: Create one or more customers with debts (V1).
+    source_operation: openapi/trueaccord-recover-openapi.yml#addCustomers
+  - name: add_customers_batch
+    description: Batch-create customers with per-record results (V2).
+    source_operation: openapi/trueaccord-recover-openapi.yml#addCustomersBatch
+  - name: list_customers
+    description: List/paginate customers, filter by reference or time window.
+    source_operation: openapi/trueaccord-recover-openapi.yml#listCustomers
+  - name: get_customer
+    description: Retrieve one customer by id.
+    source_operation: openapi/trueaccord-recover-openapi.yml#getCustomer
+  - name: add_contact_information
+    description: Append addresses, phones, or emails to a customer.
+    source_operation: openapi/trueaccord-recover-openapi.yml#addContactInformation
+  - name: edit_contact_information
+    description: Replace a customer's contact information (source of truth).
+    source_operation: openapi/trueaccord-recover-openapi.yml#editContactInformation

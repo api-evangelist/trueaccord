@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.trueaccord.com/recover/recover-api-reference
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.trueaccord.com/recover/recover-api-reference
+  detail: >-
+    Base path /api/v1/. A newer batch endpoint (/customersBatch/, "V2") is
+    added alongside the V1 resource rather than as a new path version.
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

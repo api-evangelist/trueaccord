@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.trueaccord.com/recover/recover-api-reference
+format: custom
+envelope:
+  description: >-
+    TrueAccord returns a JSON error object rather than RFC 9457 problem+json.
+  fields:
+    code: Error code string.
+    msg: Human-readable error message.
+    errorInfo: Object with additional error details (e.g. invalid field names).
+problems:
+  - status: 400
+    code: bad_request
+    title: Invalid data format
+    detail: >-
+      Request body contained invalid or malformed fields. errorInfo enumerates
+      the invalid fields.
+    source_operation: openapi/trueaccord-recover-openapi.yml#addContactInformation
+  - status: 403
+    code: forbidden
+    title: Missing or invalid creditor header
+    detail: >-
+      X-TA-CREDITOR is required for multi-creditor accounts and was missing, or
+      the key is not authorized for the requested creditor.
+    source_operation: openapi/trueaccord-recover-openapi.yml#addCustomers
+  - status: 404
+    code: not_found
+    title: Customer not found
+    detail: No customer exists for the supplied customerId.
+    source_operation: openapi/trueaccord-recover-openapi.yml#getCustomer
+  - status: 409
+    code: conflict
+    title: Duplicate transaction id
+    detail: >-
+      A debt was submitted with a transactionId that already exists. Transaction
+      ids act as an idempotency guard against double-placing a debt.
+    source_operation: openapi/trueaccord-recover-openapi.yml#addCustomers
