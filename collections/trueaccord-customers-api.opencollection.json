@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TrueAccord Recover Customers API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trueaccord.com/api/v1/customers/",
+            "headers": [
+              {
+                "name": "X-TA-CREDITOR",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return (max 100)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Lower bound timestamp (milliseconds since epoch, UTC)."
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound timestamp (milliseconds since epoch, UTC)."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated creditor references (max 100)."
+              }
+            ]
+          },
+          "docs": "List customers with pagination. Filter by a comma-separated set of creditor references, or by a created/updated time window. Maximum 100 results per request."
+        },
+        {
+          "info": {
+            "name": "Add customers (V1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trueaccord.com/api/v1/customers/",
+            "headers": [
+              {
+                "name": "X-TA-CREDITOR",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "addDebtsIfPossible",
+                "value": "",
+                "type": "query",
+                "description": "When true, add debts to existing customers instead of rejecting duplicates."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create one or more customers with their addresses, phones, emails, and debts. Set addDebtsIfPossible to add debts to customers that already exist rather than failing on a duplicate reference."
+        },
+        {
+          "info": {
+            "name": "Add customers (V2, batch)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trueaccord.com/api/v1/customersBatch/",
+            "headers": [
+              {
+                "name": "X-TA-CREDITOR",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "addDebtsIfPossible",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Batch variant of addCustomers that returns an individual response or error object per submitted customer, so a single bad record does not fail the whole batch."
+        },
+        {
+          "info": {
+            "name": "Get one customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trueaccord.com/api/v1/customers/:customerId",
+            "headers": [
+              {
+                "name": "X-TA-CREDITOR",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single customer by its TrueAccord customer id."
+        },
+        {
+          "info": {
+            "name": "Edit contact information",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trueaccord.com/api/v1/customers/:customerId",
+            "headers": [
+              {
+                "name": "X-TA-CREDITOR",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a customer's contact information. The payload is treated as the source of truth. Name, at least one address, and at least one email are required."
+        },
+        {
+          "info": {
+            "name": "Add contact information",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trueaccord.com/api/v1/customers/:customerId",
+            "headers": [
+              {
+                "name": "X-TA-CREDITOR",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Append addresses, phones, and/or emails to a customer. Additions do not replace existing contact information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

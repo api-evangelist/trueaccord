@@ -1,0 +1,1639 @@
+{
+  "item": [
+    {
+      "id": "54145e65-a8bb-4589-a14b-b1fd52b02d0d",
+      "name": "Customers",
+      "description": {
+        "content": "Create, retrieve, and manage customers (consumers) and their debts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a56c24d9-dfee-4ed1-a9a6-6d980d65f92f",
+          "name": "Add customers (V1)",
+          "request": {
+            "name": "Add customers (V1)",
+            "description": {
+              "content": "Create one or more customers with their addresses, phones, emails, and debts. Set addDebtsIfPossible to add debts to customers that already exist rather than failing on a duplicate reference.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "addDebtsIfPossible",
+                  "value": "<boolean>",
+                  "description": "When true, add debts to existing customers instead of rejecting duplicates."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                "key": "X-TA-CREDITOR",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "075bab7c-153a-4ecb-97da-891dec840774",
+              "name": "Customers created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "addDebtsIfPossible",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f99c717-394e-4fa7-8ff2-0c56bf325347",
+              "name": "Invalid request data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "addDebtsIfPossible",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e91088d5-8498-4770-beef-578aa745d875",
+              "name": "Missing or invalid creditor header / not authorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "addDebtsIfPossible",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "718578b7-74cc-4602-8af7-4decbf19b491",
+              "name": "Duplicate transaction id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "addDebtsIfPossible",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "789504e4-c853-43ac-986a-572bd82f944c",
+          "name": "List customers",
+          "request": {
+            "name": "List customers",
+            "description": {
+              "content": "List customers with pagination. Filter by a comma-separated set of creditor references, or by a created/updated time window. Maximum 100 results per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "Number of results to return (max 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Pagination offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<long>",
+                  "description": "Lower bound timestamp (milliseconds since epoch, UTC)."
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<long>",
+                  "description": "Upper bound timestamp (milliseconds since epoch, UTC)."
+                },
+                {
+                  "disabled": false,
+                  "key": "reference",
+                  "value": "<string>",
+                  "description": "Comma-separated creditor references (max 100)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                "key": "X-TA-CREDITOR",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a126c049-bd0b-4e03-8c01-3dea97b74db9",
+              "name": "A page of customers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    }\n  ],\n  \"totalResults\": 5604\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eff97f57-16c9-4764-ac7a-a69e58886c6e",
+              "name": "Missing or invalid creditor header / not authorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fcbf45c-9da2-4a6e-a226-16518c03ab39",
+          "name": "Add customers (V2, batch)",
+          "request": {
+            "name": "Add customers (V2, batch)",
+            "description": {
+              "content": "Batch variant of addCustomers that returns an individual response or error object per submitted customer, so a single bad record does not fail the whole batch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customersBatch",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "addDebtsIfPossible",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                "key": "X-TA-CREDITOR",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"<string>\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18490001-8574-4ea4-934a-9fee2b383d50",
+              "name": "Per-customer results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customersBatch",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "addDebtsIfPossible",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responses\": [\n    {\n      \"customer\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"dateOfBirth\": {\n          \"day\": \"<integer>\",\n          \"month\": \"<integer>\",\n          \"year\": \"<integer>\"\n        },\n        \"reference\": \"<string>\",\n        \"businesses\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"addresses\": [\n          {\n            \"line1\": \"<string>\",\n            \"line2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"zipCode\": \"<string>\",\n            \"country\": \"<string>\"\n          },\n          {\n            \"line1\": \"<string>\",\n            \"line2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"zipCode\": \"<string>\",\n            \"country\": \"<string>\"\n          }\n        ],\n        \"phones\": [\n          {\n            \"number\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"number\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"emails\": [\n          {\n            \"address\": \"<email>\"\n          },\n          {\n            \"address\": \"<email>\"\n          }\n        ],\n        \"debts\": [\n          {\n            \"biller\": \"<string>\",\n            \"product\": \"<string>\",\n            \"principal\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"interest\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"fees\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"transactionId\": \"<string>\",\n            \"chargeOffDate\": {\n              \"day\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"month\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"year\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"paymentOffers\": [\n              \"<object>\",\n              \"<object>\"\n            ]\n          },\n          {\n            \"biller\": \"<string>\",\n            \"product\": \"<string>\",\n            \"principal\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"interest\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"fees\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"transactionId\": \"<string>\",\n            \"chargeOffDate\": {\n              \"day\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"month\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"year\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"paymentOffers\": [\n              \"<object>\",\n              \"<object>\"\n            ]\n          }\n        ],\n        \"metadata\": \"<object>\"\n      },\n      \"isAddedDebt\": true,\n      \"isError\": false,\n      \"error\": {\n        \"code\": \"string\",\n        \"msg\": \"string\",\n        \"errorInfo\": {}\n      }\n    },\n    {\n      \"customer\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"dateOfBirth\": {\n          \"day\": \"<integer>\",\n          \"month\": \"<integer>\",\n          \"year\": \"<integer>\"\n        },\n        \"reference\": \"<string>\",\n        \"businesses\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"addresses\": [\n          {\n            \"line1\": \"<string>\",\n            \"line2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"zipCode\": \"<string>\",\n            \"country\": \"<string>\"\n          },\n          {\n            \"line1\": \"<string>\",\n            \"line2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"zipCode\": \"<string>\",\n            \"country\": \"<string>\"\n          }\n        ],\n        \"phones\": [\n          {\n            \"number\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"number\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"emails\": [\n          {\n            \"address\": \"<email>\"\n          },\n          {\n            \"address\": \"<email>\"\n          }\n        ],\n        \"debts\": [\n          {\n            \"biller\": \"<string>\",\n            \"product\": \"<string>\",\n            \"principal\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"interest\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"fees\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"transactionId\": \"<string>\",\n            \"chargeOffDate\": {\n              \"day\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"month\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"year\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"paymentOffers\": [\n              \"<object>\",\n              \"<object>\"\n            ]\n          },\n          {\n            \"biller\": \"<string>\",\n            \"product\": \"<string>\",\n            \"principal\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"interest\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"fees\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"transactionId\": \"<string>\",\n            \"chargeOffDate\": {\n              \"day\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"month\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"year\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"paymentOffers\": [\n              \"<object>\",\n              \"<object>\"\n            ]\n          }\n        ],\n        \"metadata\": \"<object>\"\n      },\n      \"isAddedDebt\": false,\n      \"isError\": false,\n      \"error\": {\n        \"code\": \"string\",\n        \"msg\": \"string\",\n        \"errorInfo\": {}\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2329c09b-6b61-47cb-b506-f1347c73b474",
+              "name": "Missing or invalid creditor header / not authorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customersBatch",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "addDebtsIfPossible",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customers\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"dateOfBirth\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"reference\": \"<string>\",\n      \"businesses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"addresses\": [\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"zipCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"address\": \"<email>\"\n        },\n        {\n          \"address\": \"<email>\"\n        }\n      ],\n      \"debts\": [\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        },\n        {\n          \"biller\": \"<string>\",\n          \"product\": \"<string>\",\n          \"principal\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"interest\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"fees\": {\n            \"amount\": \"<integer>\",\n            \"currency\": \"USD\"\n          },\n          \"transactionId\": \"<string>\",\n          \"chargeOffDate\": {\n            \"day\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"year\": \"<integer>\"\n          },\n          \"paymentOffers\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      ],\n      \"metadata\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d739ec8-5aae-4777-82db-7bcc69f4a0e6",
+          "name": "Get one customer",
+          "request": {
+            "name": "Get one customer",
+            "description": {
+              "content": "Retrieve a single customer by its TrueAccord customer id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                "key": "X-TA-CREDITOR",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1ea371f-4d67-4f09-aee8-bb4b3880084d",
+              "name": "The customer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"dateOfBirth\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"reference\": \"<string>\",\n  \"businesses\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    },\n    {\n      \"address\": \"<email>\"\n    }\n  ],\n  \"debts\": [\n    {\n      \"biller\": \"<string>\",\n      \"product\": \"<string>\",\n      \"principal\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"interest\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"fees\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"transactionId\": \"<string>\",\n      \"chargeOffDate\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"paymentOffers\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"biller\": \"<string>\",\n      \"product\": \"<string>\",\n      \"principal\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"interest\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"fees\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"transactionId\": \"<string>\",\n      \"chargeOffDate\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"paymentOffers\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ],\n  \"metadata\": \"<object>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "630feade-9136-4615-8095-3016755fe43e",
+              "name": "Missing or invalid creditor header / not authorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97a443ce-62ba-4c1e-a67d-0818fdbd0544",
+              "name": "Customer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ea6bf35-e606-4aa5-9a44-40ae1751fadf",
+          "name": "Add contact information",
+          "request": {
+            "name": "Add contact information",
+            "description": {
+              "content": "Append addresses, phones, and/or emails to a customer. Additions do not replace existing contact information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                "key": "X-TA-CREDITOR",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    },\n    {\n      \"address\": \"<email>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58665847-48fc-4568-9d2b-8de76ca11600",
+              "name": "Updated customer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    },\n    {\n      \"address\": \"<email>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"dateOfBirth\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"reference\": \"<string>\",\n  \"businesses\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    },\n    {\n      \"address\": \"<email>\"\n    }\n  ],\n  \"debts\": [\n    {\n      \"biller\": \"<string>\",\n      \"product\": \"<string>\",\n      \"principal\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"interest\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"fees\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"transactionId\": \"<string>\",\n      \"chargeOffDate\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"paymentOffers\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"biller\": \"<string>\",\n      \"product\": \"<string>\",\n      \"principal\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"interest\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"fees\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"transactionId\": \"<string>\",\n      \"chargeOffDate\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"paymentOffers\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ],\n  \"metadata\": \"<object>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ca00a97-349a-4c56-bad3-58e066513a91",
+              "name": "Invalid request data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    },\n    {\n      \"address\": \"<email>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f15f6c9-307a-4470-a9b9-e647440cbbf6",
+              "name": "Missing or invalid creditor header / not authorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    },\n    {\n      \"address\": \"<email>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fd28e9b-6a7a-4162-8552-40ab62ccbb76",
+              "name": "Customer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    },\n    {\n      \"address\": \"<email>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8184176e-1741-4741-8a29-5c2a2d69d28e",
+          "name": "Edit contact information",
+          "request": {
+            "name": "Edit contact information",
+            "description": {
+              "content": "Replace a customer's contact information. The payload is treated as the source of truth. Name, at least one address, and at least one email are required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                "key": "X-TA-CREDITOR",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    }\n  ],\n  \"dateOfBirth\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"languagePreference\": \"<string>\",\n  \"languagePreferred\": {\n    \"language\": \"<string>\",\n    \"channel\": \"<string>\",\n    \"date\": {\n      \"day\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"year\": \"<integer>\"\n    }\n  },\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3fa4ed29-6697-47be-a5b1-eb79da627fa9",
+              "name": "Updated customer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    }\n  ],\n  \"dateOfBirth\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"languagePreference\": \"<string>\",\n  \"languagePreferred\": {\n    \"language\": \"<string>\",\n    \"channel\": \"<string>\",\n    \"date\": {\n      \"day\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"year\": \"<integer>\"\n    }\n  },\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"dateOfBirth\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"reference\": \"<string>\",\n  \"businesses\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    },\n    {\n      \"address\": \"<email>\"\n    }\n  ],\n  \"debts\": [\n    {\n      \"biller\": \"<string>\",\n      \"product\": \"<string>\",\n      \"principal\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"interest\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"fees\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"transactionId\": \"<string>\",\n      \"chargeOffDate\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"paymentOffers\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"biller\": \"<string>\",\n      \"product\": \"<string>\",\n      \"principal\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"interest\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"fees\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"USD\"\n      },\n      \"transactionId\": \"<string>\",\n      \"chargeOffDate\": {\n        \"day\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"year\": \"<integer>\"\n      },\n      \"paymentOffers\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ],\n  \"metadata\": \"<object>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed8b931b-a820-4af6-a3ab-a45e86bc4787",
+              "name": "Invalid request data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    }\n  ],\n  \"dateOfBirth\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"languagePreference\": \"<string>\",\n  \"languagePreferred\": {\n    \"language\": \"<string>\",\n    \"channel\": \"<string>\",\n    \"date\": {\n      \"day\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"year\": \"<integer>\"\n    }\n  },\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0516ccd4-8234-445e-bdeb-ed7444b3e184",
+              "name": "Missing or invalid creditor header / not authorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    }\n  ],\n  \"dateOfBirth\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"languagePreference\": \"<string>\",\n  \"languagePreferred\": {\n    \"language\": \"<string>\",\n    \"channel\": \"<string>\",\n    \"date\": {\n      \"day\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"year\": \"<integer>\"\n    }\n  },\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e45b710-666a-4a1b-a4fc-12db08316c26",
+              "name": "Customer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Creditor id. Required for multi-creditor accounts; a 403 is returned when it is required but missing.",
+                    "key": "X-TA-CREDITOR",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"<email>\"\n    }\n  ],\n  \"dateOfBirth\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"languagePreference\": \"<string>\",\n  \"languagePreferred\": {\n    \"language\": \"<string>\",\n    \"channel\": \"<string>\",\n    \"date\": {\n      \"day\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"year\": \"<integer>\"\n    }\n  },\n  \"phones\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"msg\": \"string\",\n  \"errorInfo\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trueaccord.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2a1aa00a-eb4d-4751-99e4-8a64833bad88",
+    "name": "TrueAccord Recover Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TrueAccord Recover API lets creditors and debt buyers place accounts with TrueAccord for digital-first, omnichannel debt collection. It manages customers (consumers), their contact information, and the debts placed for recovery. Authentication is HTTP Basic with a TrueAccord API key supplied as the username. This specification was reconstructed by API Evangelist from the public TrueAccord developer documentation at https://docs.trueaccord.com/ and is not an official TrueAccord artifact.\n\nContact Support:\n Name: TrueAccord Developer Documentation",
+      "type": "text/plain"
+    }
+  }
+}
