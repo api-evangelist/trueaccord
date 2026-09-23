@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: TrueAccord Recover Customers API
   version: v1
@@ -297,52 +297,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Customer not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Missing or invalid creditor header / not authorized.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Conflict:
-      description: Duplicate transaction id.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request data.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: TrueAccord error envelope.
-      properties:
-        code:
-          type: string
-          description: Error code.
-        msg:
-          type: string
-          description: Human-readable error message.
-        errorInfo:
-          type: object
-          description: Additional error details.
-    Phone:
-      type: object
-      properties:
-        number:
-          type: string
-        type:
-          type: string
     Address:
       type: object
       properties:
@@ -358,30 +313,19 @@ components:
           type: string
         country:
           type: string
-    DateObject:
+    Error:
       type: object
+      description: TrueAccord error envelope.
       properties:
-        day:
-          type: integer
-        month:
-          type: integer
-        year:
-          type: integer
-    Email:
-      type: object
-      properties:
-        address:
+        code:
           type: string
-          format: email
-    Money:
-      type: object
-      properties:
-        amount:
-          type: integer
-          description: Minor units.
-        currency:
+          description: Error code.
+        msg:
           type: string
-          example: USD
+          description: Human-readable error message.
+        errorInfo:
+          type: object
+          description: Additional error details.
     Customer:
       type: object
       properties:
@@ -437,6 +381,62 @@ components:
           type: array
           items:
             type: object
+    Phone:
+      type: object
+      properties:
+        number:
+          type: string
+        type:
+          type: string
+    Money:
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Minor units.
+        currency:
+          type: string
+          example: USD
+    Email:
+      type: object
+      properties:
+        address:
+          type: string
+          format: email
+    DateObject:
+      type: object
+      properties:
+        day:
+          type: integer
+        month:
+          type: integer
+        year:
+          type: integer
+  responses:
+    Conflict:
+      description: Duplicate transaction id.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request data.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Missing or invalid creditor header / not authorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Customer not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     CreditorHeader:
       name: X-TA-CREDITOR
