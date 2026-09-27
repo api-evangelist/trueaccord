@@ -49,9 +49,9 @@ modified: '2026-07-21'
 tags:
 - Company
 - Debt Collection
-- Financial-Services
+- Financial Services
 - Fintech
-- Machine-Learning
+- Machine Learning
 - Collection
 - Consumer Finance
 tags_raw:
@@ -62,6 +62,8 @@ tags_raw:
 - Machine Learning
 - Collections
 - Consumer Finance
+- Financial-Services
+- Machine-Learning
 apis:
 - aid: trueaccord:trueaccord-customers-api
   name: TrueAccord Customers API

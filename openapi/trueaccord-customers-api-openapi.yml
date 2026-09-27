@@ -298,34 +298,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zipCode:
-          type: string
-        country:
-          type: string
-    Error:
-      type: object
-      description: TrueAccord error envelope.
-      properties:
-        code:
-          type: string
-          description: Error code.
-        msg:
-          type: string
-          description: Human-readable error message.
-        errorInfo:
-          type: object
-          description: Additional error details.
     Customer:
       type: object
       properties:
@@ -359,6 +331,47 @@ components:
             $ref: '#/components/schemas/Debt'
         metadata:
           type: object
+    Email:
+      type: object
+      properties:
+        address:
+          type: string
+          format: email
+    Error:
+      type: object
+      description: TrueAccord error envelope.
+      properties:
+        code:
+          type: string
+          description: Error code.
+        msg:
+          type: string
+          description: Human-readable error message.
+        errorInfo:
+          type: object
+          description: Additional error details.
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          type: string
+        country:
+          type: string
+    Phone:
+      type: object
+      properties:
+        number:
+          type: string
+        type:
+          type: string
     Debt:
       type: object
       properties:
@@ -381,13 +394,6 @@ components:
           type: array
           items:
             type: object
-    Phone:
-      type: object
-      properties:
-        number:
-          type: string
-        type:
-          type: string
     Money:
       type: object
       properties:
@@ -397,12 +403,6 @@ components:
         currency:
           type: string
           example: USD
-    Email:
-      type: object
-      properties:
-        address:
-          type: string
-          format: email
     DateObject:
       type: object
       properties:
@@ -413,8 +413,8 @@ components:
         year:
           type: integer
   responses:
-    Conflict:
-      description: Duplicate transaction id.
+    Forbidden:
+      description: Missing or invalid creditor header / not authorized.
       content:
         application/json:
           schema:
@@ -425,14 +425,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Missing or invalid creditor header / not authorized.
+    NotFound:
+      description: Customer not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Customer not found.
+    Conflict:
+      description: Duplicate transaction id.
       content:
         application/json:
           schema:
