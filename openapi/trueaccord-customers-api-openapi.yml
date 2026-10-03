@@ -298,6 +298,35 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Debt:
+      type: object
+      properties:
+        biller:
+          type: string
+        product:
+          type: string
+        principal:
+          $ref: '#/components/schemas/Money'
+        interest:
+          $ref: '#/components/schemas/Money'
+        fees:
+          $ref: '#/components/schemas/Money'
+        transactionId:
+          type: string
+          description: Unique per debt; a duplicate yields 409.
+        chargeOffDate:
+          $ref: '#/components/schemas/DateObject'
+        paymentOffers:
+          type: array
+          items:
+            type: object
+    Phone:
+      type: object
+      properties:
+        number:
+          type: string
+        type:
+          type: string
     Customer:
       type: object
       properties:
@@ -331,25 +360,15 @@ components:
             $ref: '#/components/schemas/Debt'
         metadata:
           type: object
-    Email:
+    Money:
       type: object
       properties:
-        address:
+        amount:
+          type: integer
+          description: Minor units.
+        currency:
           type: string
-          format: email
-    Error:
-      type: object
-      description: TrueAccord error envelope.
-      properties:
-        code:
-          type: string
-          description: Error code.
-        msg:
-          type: string
-          description: Human-readable error message.
-        errorInfo:
-          type: object
-          description: Additional error details.
+          example: USD
     Address:
       type: object
       properties:
@@ -365,44 +384,19 @@ components:
           type: string
         country:
           type: string
-    Phone:
+    Error:
       type: object
+      description: TrueAccord error envelope.
       properties:
-        number:
+        code:
           type: string
-        type:
+          description: Error code.
+        msg:
           type: string
-    Debt:
-      type: object
-      properties:
-        biller:
-          type: string
-        product:
-          type: string
-        principal:
-          $ref: '#/components/schemas/Money'
-        interest:
-          $ref: '#/components/schemas/Money'
-        fees:
-          $ref: '#/components/schemas/Money'
-        transactionId:
-          type: string
-          description: Unique per debt; a duplicate yields 409.
-        chargeOffDate:
-          $ref: '#/components/schemas/DateObject'
-        paymentOffers:
-          type: array
-          items:
-            type: object
-    Money:
-      type: object
-      properties:
-        amount:
-          type: integer
-          description: Minor units.
-        currency:
-          type: string
-          example: USD
+          description: Human-readable error message.
+        errorInfo:
+          type: object
+          description: Additional error details.
     DateObject:
       type: object
       properties:
@@ -412,19 +406,13 @@ components:
           type: integer
         year:
           type: integer
+    Email:
+      type: object
+      properties:
+        address:
+          type: string
+          format: email
   responses:
-    Forbidden:
-      description: Missing or invalid creditor header / not authorized.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request data.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Customer not found.
       content:
@@ -433,6 +421,18 @@ components:
             $ref: '#/components/schemas/Error'
     Conflict:
       description: Duplicate transaction id.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Missing or invalid creditor header / not authorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request data.
       content:
         application/json:
           schema:
