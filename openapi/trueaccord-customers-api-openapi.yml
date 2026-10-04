@@ -298,35 +298,34 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Debt:
+    Address:
       type: object
       properties:
-        biller:
+        line1:
           type: string
-        product:
+        line2:
           type: string
-        principal:
-          $ref: '#/components/schemas/Money'
-        interest:
-          $ref: '#/components/schemas/Money'
-        fees:
-          $ref: '#/components/schemas/Money'
-        transactionId:
+        city:
           type: string
-          description: Unique per debt; a duplicate yields 409.
-        chargeOffDate:
-          $ref: '#/components/schemas/DateObject'
-        paymentOffers:
-          type: array
-          items:
-            type: object
-    Phone:
+        state:
+          type: string
+        zipCode:
+          type: string
+        country:
+          type: string
+    Error:
       type: object
+      description: TrueAccord error envelope.
       properties:
-        number:
+        code:
           type: string
-        type:
+          description: Error code.
+        msg:
           type: string
+          description: Human-readable error message.
+        errorInfo:
+          type: object
+          description: Additional error details.
     Customer:
       type: object
       properties:
@@ -360,43 +359,6 @@ components:
             $ref: '#/components/schemas/Debt'
         metadata:
           type: object
-    Money:
-      type: object
-      properties:
-        amount:
-          type: integer
-          description: Minor units.
-        currency:
-          type: string
-          example: USD
-    Address:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zipCode:
-          type: string
-        country:
-          type: string
-    Error:
-      type: object
-      description: TrueAccord error envelope.
-      properties:
-        code:
-          type: string
-          description: Error code.
-        msg:
-          type: string
-          description: Human-readable error message.
-        errorInfo:
-          type: object
-          description: Additional error details.
     DateObject:
       type: object
       properties:
@@ -406,12 +368,50 @@ components:
           type: integer
         year:
           type: integer
+    Money:
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Minor units.
+        currency:
+          type: string
+          example: USD
     Email:
       type: object
       properties:
         address:
           type: string
           format: email
+    Debt:
+      type: object
+      properties:
+        biller:
+          type: string
+        product:
+          type: string
+        principal:
+          $ref: '#/components/schemas/Money'
+        interest:
+          $ref: '#/components/schemas/Money'
+        fees:
+          $ref: '#/components/schemas/Money'
+        transactionId:
+          type: string
+          description: Unique per debt; a duplicate yields 409.
+        chargeOffDate:
+          $ref: '#/components/schemas/DateObject'
+        paymentOffers:
+          type: array
+          items:
+            type: object
+    Phone:
+      type: object
+      properties:
+        number:
+          type: string
+        type:
+          type: string
   responses:
     NotFound:
       description: Customer not found.
@@ -419,8 +419,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Conflict:
-      description: Duplicate transaction id.
+    BadRequest:
+      description: Invalid request data.
       content:
         application/json:
           schema:
@@ -431,8 +431,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request data.
+    Conflict:
+      description: Duplicate transaction id.
       content:
         application/json:
           schema:
