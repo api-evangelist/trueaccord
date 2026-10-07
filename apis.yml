@@ -83,6 +83,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Pricing
+  url: https://www.trueaccord.com/
+- type: Plans
+  url: plans/trueaccord-plans-pricing.yml
 - url: https://www.trueaccord.com/press
   type: Blog
 - url: https://www.trueaccord.com/feed/
