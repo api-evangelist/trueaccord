@@ -298,6 +298,47 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Email:
+      type: object
+      properties:
+        address:
+          type: string
+          format: email
+    Error:
+      type: object
+      description: TrueAccord error envelope.
+      properties:
+        code:
+          type: string
+          description: Error code.
+        msg:
+          type: string
+          description: Human-readable error message.
+        errorInfo:
+          type: object
+          description: Additional error details.
+    Debt:
+      type: object
+      properties:
+        biller:
+          type: string
+        product:
+          type: string
+        principal:
+          $ref: '#/components/schemas/Money'
+        interest:
+          $ref: '#/components/schemas/Money'
+        fees:
+          $ref: '#/components/schemas/Money'
+        transactionId:
+          type: string
+          description: Unique per debt; a duplicate yields 409.
+        chargeOffDate:
+          $ref: '#/components/schemas/DateObject'
+        paymentOffers:
+          type: array
+          items:
+            type: object
     Address:
       type: object
       properties:
@@ -313,19 +354,24 @@ components:
           type: string
         country:
           type: string
-    Error:
+    Money:
       type: object
-      description: TrueAccord error envelope.
       properties:
-        code:
+        amount:
+          type: integer
+          description: Minor units.
+        currency:
           type: string
-          description: Error code.
-        msg:
-          type: string
-          description: Human-readable error message.
-        errorInfo:
-          type: object
-          description: Additional error details.
+          example: USD
+    DateObject:
+      type: object
+      properties:
+        day:
+          type: integer
+        month:
+          type: integer
+        year:
+          type: integer
     Customer:
       type: object
       properties:
@@ -359,52 +405,6 @@ components:
             $ref: '#/components/schemas/Debt'
         metadata:
           type: object
-    DateObject:
-      type: object
-      properties:
-        day:
-          type: integer
-        month:
-          type: integer
-        year:
-          type: integer
-    Money:
-      type: object
-      properties:
-        amount:
-          type: integer
-          description: Minor units.
-        currency:
-          type: string
-          example: USD
-    Email:
-      type: object
-      properties:
-        address:
-          type: string
-          format: email
-    Debt:
-      type: object
-      properties:
-        biller:
-          type: string
-        product:
-          type: string
-        principal:
-          $ref: '#/components/schemas/Money'
-        interest:
-          $ref: '#/components/schemas/Money'
-        fees:
-          $ref: '#/components/schemas/Money'
-        transactionId:
-          type: string
-          description: Unique per debt; a duplicate yields 409.
-        chargeOffDate:
-          $ref: '#/components/schemas/DateObject'
-        paymentOffers:
-          type: array
-          items:
-            type: object
     Phone:
       type: object
       properties:
@@ -413,8 +413,8 @@ components:
         type:
           type: string
   responses:
-    NotFound:
-      description: Customer not found.
+    Conflict:
+      description: Duplicate transaction id.
       content:
         application/json:
           schema:
@@ -425,14 +425,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Missing or invalid creditor header / not authorized.
+    NotFound:
+      description: Customer not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Conflict:
-      description: Duplicate transaction id.
+    Forbidden:
+      description: Missing or invalid creditor header / not authorized.
       content:
         application/json:
           schema:
